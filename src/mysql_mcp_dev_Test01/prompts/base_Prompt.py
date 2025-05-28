@@ -18,6 +18,7 @@ class BasePrompt:
         raise  NotImplementedError()
 
     async  def run_prompt(self,arguments:Dict[str,Any]) -> Sequence[TextContent]:
+
         raise NotImplementedError()
 
 
