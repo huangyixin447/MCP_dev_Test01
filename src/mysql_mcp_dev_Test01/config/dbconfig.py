@@ -13,20 +13,23 @@ def get_db_config():
     load_dotenv()
     # 指定.env配置文件的路径
     from  pathlib import Path
+    # 填写你env的路径
     default_env_path=Path("'/Users/wzf-perfomancemac/Desktop/mcp/mcp_server_development/MCP_dev_ Test01/.env'")
     # 加载env的默认路径
     load_dotenv(dotenv_path=default_env_path)
     # 加调试输出确认是否加载成功
-    print("[DEBUG] MYSQL_USER:", os.getenv("MYSQL_USER"))
-    print("[DEBUG] MYSQL_PASSWORD:", os.getenv("MYSQL_PASSWORD"))
-    print("[DEBUG] MYSQL_DATABASE:", os.getenv("MYSQL_DATABASE"))
+    print("[DEBUG] MYSQL_USER:", os.getenv("mysql_host"))
+    print("[DEBUG] MYSQL_PASSWORD:", os.getenv("mysql_password"))
+    print("[DEBUG] MYSQL_DATABASE:", os.getenv("mysql_database"))
     config = {
         "host": os.getenv("mysql_host","localhost"),
         "port": int(os.getenv("mysql_port","3306")),
+        "user_name": os.getenv("mysql_user","root"),
+        "password": os.getenv("mysql_password"),
         "used_password":"yes" if os.getenv("mysql_password") is not None else "no",
         "database":os.getenv("mysql_database"),
         # 默认角色为只读
-        "role":os.getenv("MYSQL_ROLE","readonly")
+        "role":os.getenv("mysql_role","readonly")
     }
     # 检查下数据库配置
     if not all([config["user"],config["password"],config["database"]]):
