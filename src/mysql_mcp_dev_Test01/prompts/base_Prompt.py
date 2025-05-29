@@ -14,7 +14,7 @@ class BasePrompt:
 
 
     def get_prompt(self)->Prompt:
-        #跑出一个为实现的异常
+        #抛出一个为实现的异常
         raise  NotImplementedError()
 
     async  def run_prompt(self,arguments:Dict[str,Any]) -> GetPromptResult:

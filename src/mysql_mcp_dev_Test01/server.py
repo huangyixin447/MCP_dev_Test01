@@ -7,7 +7,7 @@ from mysql_mcp_server_pro.handles.base import ToolRegistry
 from starlette.applications import Starlette
 from starlette.routing import Route, Mount
 
-from .prompts.base_Prompt import *
+from prompts.base_Prompt import *
 
 
 # 初始化MCP的服务器
