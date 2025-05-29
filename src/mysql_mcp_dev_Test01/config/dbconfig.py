@@ -41,7 +41,6 @@ def get_db_config():
 
 
 
-
 # 对外暴露接口，提供一个查询权限的方法
 def get_role_permission(role:str)->list:
     # 默认返回只读权限

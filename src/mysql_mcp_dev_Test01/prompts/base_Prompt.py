@@ -1,5 +1,5 @@
 from typing import ClassVar, Dict, Type, Any, Sequence
-from mcp.types import Prompt, TextContent
+from mcp.types import Prompt, TextContent, GetPromptResult
 
 
 # 提示词的基类
@@ -17,7 +17,7 @@ class BasePrompt:
         #跑出一个为实现的异常
         raise  NotImplementedError()
 
-    async  def run_prompt(self,arguments:Dict[str,Any]) -> Sequence[TextContent]:
+    async  def run_prompt(self,arguments:Dict[str,Any]) -> GetPromptResult:
 
         raise NotImplementedError()
 
@@ -34,7 +34,7 @@ class PromptRegistry:
         if prompt  not in cls._prompts:
             cls._prompts[prompt.name]=prompt
         else:
-            print("工具已经注册")
+            print("提示词已经注册")
 
         return  prompt_class
 
