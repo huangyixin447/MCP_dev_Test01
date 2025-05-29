@@ -1,8 +1,9 @@
 [project]
-name = "MCP"
-version = "0.1.0"
+name = "mysql-mcp-server"  # 避免与 mcp 冲突
+version = "1.0.0"
 description = "MCP标准项目"
 requires-python = ">=3.11"
+
 dependencies = [
     "mcp>=1.8.0",
     "mysql-connector-python>=9.2.0",
@@ -12,20 +13,16 @@ dependencies = [
     "uvicorn>=0.34.0",
 ]
 
-
-
 [build-system]
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-[tool.hatch.build]
-packages = ["src"]
+[tool.hatch.build.targets.wheel]
+packages = ["src/mysql_mcp_dev_Test01"]
 
 [project.scripts]
 sse_run = "mysql_mcp_dev_Test01.client:sse_run"
 stdio_run = "mysql_mcp_dev_Test01.client:stdio_run"
 
-
 [[project.authors]]
-name="timelocked"
-
+name = "timelocked"
