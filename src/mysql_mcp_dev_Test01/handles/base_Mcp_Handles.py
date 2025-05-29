@@ -1,7 +1,6 @@
 # 为所有的工具类
-from typing import ClassVar, Dict, Type, Any
+from typing import ClassVar, Dict, Type, Any, Sequence
 
-from jedi.inference.value.iterable import Sequence
 from mcp import  Tool
 from mcp.types import TextContent
 """
