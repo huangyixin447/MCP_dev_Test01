@@ -50,12 +50,13 @@ class tool_Registry:
 
 #    注册方法
     @classmethod
-    def register(cls,tool_Class : Type['BaseHandler'])->Type['BaseHandler']:
+    def register(cls, tool_class: Type['BaseHandler']) -> Type['BaseHandler']:
 #         首先实例工具类
-        tool=tool_Class()
+        tool=tool_class()
         #
         cls.Tool_Map[tool.name]=tool
-        return  tool_Class
+        return  tool_class
+
 
     @classmethod
     def get_tool(cls,name:str)-> BaseHandler:
