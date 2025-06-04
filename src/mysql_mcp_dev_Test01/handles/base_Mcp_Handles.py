@@ -21,7 +21,7 @@ class BaseHandler(object):
     def __init_subclass__(cls, **kwargs):
         super().__init_subclass__(**kwargs)
         if cls.name:
-            tool_Registry.register(cls)
+            Tool_Registry.register(cls)
     # 获取工具的方法
     """返回MCP的tool类型"""
     def get_tool_description(self)->Tool:
@@ -43,9 +43,9 @@ class BaseHandler(object):
 
 
 # 工具注册类
-class tool_Registry:
+class Tool_Registry:
     # 初始为none，并且静态
-    Tool_Map: ClassVar[Dict[str,'BaseHandler']]={}
+    _tools: ClassVar[Dict[str, 'BaseHandler']] = {}
 
 
 #    注册方法
@@ -54,16 +54,16 @@ class tool_Registry:
 #         首先实例工具类
         tool=tool_class()
         #
-        cls.Tool_Map[tool.name]=tool
+        cls._tools[tool.name]=tool
         return  tool_class
 
 
     @classmethod
     def get_tool(cls,name:str)-> BaseHandler:
-        if name not in cls.Tool_Map:
+        if name not in cls._tools:
             raise ValueError(f"未知的工具{name}")
-        return cls.Tool_Map[name]
+        return cls._tools[name]
 
     @classmethod
-    def get_all_tools(cls)-> list[Tool_Map]:
-        return  [tool.tool_Prompt for tool in cls.Tool_Map.values()]
+    def get_all_tools(cls)-> list[Tool]:
+        return [tool.get_tool_description() for tool in cls._tools.values()]
